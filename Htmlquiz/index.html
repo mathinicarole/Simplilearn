@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Document</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/Htmlquiz/app.css" rel="stylesheet">
+    </head>
+    <body>
+    <div class="container">
+        <div id="question-container" class="hide">
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn" onclick="setGame()">Start</button>
+            <button id="next-btn" class="hide" class="next-btn btn">Next</button>
+        </div>
+    </div>
+    <div class="score">
+        <span id="right-answers"></span>
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script type="text/javascript">
+            
+                
+function setGame(){
+const startButton =document.getElementById('start-btn')
+const questionContainerElement =document.getElementById('question-container')
+const questionElement =document.getElementById('question')
+
+function resetState(){
+    clearStatusClass(document.body)
+    nextButton.classList.add('hide')
+    while(answerButtonsElement.firstChild){
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
+}
+
+const questions=[
+    {
+        question:'Which restaurant do you wanna visit first?',
+        answers:[
+            {text:'Ngong',correct:true},
+            {text:'Westlands',correct:false},
+            {text:'CBD' , correct:false},
+            {text:'Karen' , correct:false},
+            
+        ],
+    },
+    {
+        question:'Where should be our first vacation?',
+        answers:[
+         
+            {text:'Mombasa',correct:false},
+            {text:'Dubai' , correct:false},
+            {text:'Kajiado',correct:true},
+            {text:'Karen' , correct:false},
+            
+        ],
+    },
+    {
+        question:'Which mall should we visit next?',
+        answers:[
+         
+            {text:'WestMall',correct:false},
+            {text:'Ananas mall',correct:false},
+            {text:'Waterfront' , correct:false},
+            {text:'Village market' , correct:true},
+            
+        ],
+    },
+]
+
+    startButton.classList.add('hide')
+    shuffledQuestions=questions.sort(() =>Math.random() -0.5)
+    correctQuestionIndex=0;
+    questionContainerElement.classList.remove('hide')
+    setnextQuestion()
+    quizScore=0
+}
+
+
+
+function setnextQuestion(){
+    resetState();
+    showQuestion(shuffledQuestions[correctQuestionIndex])
+}
+
+function showQuestion(question) {
+    questionElement.innerText=question.question;
+    question.answers.forEach(answer => {
+    const button=document.createElement('button')
+     button.innerText=answer.text;
+       button.classList.add('btn')
+       if(answer.correct){
+         button.dataset.correct =answer.correct
+          }
+           button.addEventListener('click',selectAnswer)
+            answerButtonsElement.appendChild(button)
+         });
+}
+
+              
+    </script>
+
+    </body>
+</html>
