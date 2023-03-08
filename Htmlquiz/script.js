@@ -48,8 +48,6 @@ function showQuestion(question) {
          });
 }
 
-
-
 function resetState(){
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -57,7 +55,7 @@ function resetState(){
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
-
+   
 function selectAnswer(e){
     const selectedButton=e.target
     const correct =selectedButton.dataset.correct
